@@ -1,10 +1,14 @@
 package org.example;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Main {
 
-    public static void SorterInteger (Scanner scanner) {
+    public static void SorterInteger (Scanner scanner, String nameOfFile) throws FileNotFoundException {
+
         List<Integer> list = new ArrayList<>();
         while (scanner.hasNext()) {
             String variable = scanner.next();
@@ -14,7 +18,16 @@ public class Main {
                 System.out.printf("%s is not a valid parameter. It will be skipped.%n", variable);
             }
         }
-        System.out.printf("%nTotal numbers: %d.", list.size());
+        scanner.close();
+
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal numbers: %d.", list.size());
+            }
+        } else {
+            System.out.printf("%nTotal numbers: %d.", list.size());
+        }
         int i = 1;
         int j;
         int x;
@@ -34,51 +47,111 @@ public class Main {
             array[j + 1] = x;
             i = i + 1;
         }
-        System.out.println("Sorted data: ");
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.println("Sorted data: ");
+            }
+        } else {
+            System.out.println("Sorted data: ");
+        }
         for (int element : array
         ) {
-            System.out.print(element + " ");
+            if (!nameOfFile.equals("")) {
+                File file = new File(nameOfFile);
+                try (PrintWriter printWriter = new PrintWriter(file)) {
+                    printWriter.print(element + " ");
+                }
+            } else {
+                System.out.print(element + " ");
+            }
+
         }
     }
-        public static void SorterWord (Scanner scanner) {
-            List<String> list = new ArrayList<>();
-            while (scanner.hasNext()) {
-                list.add(scanner.next());
+    public static void SorterWord (Scanner scanner, String nameOfFile) throws FileNotFoundException {
+        List<String> list = new ArrayList<>();
+        while (scanner.hasNext()) {
+            list.add(scanner.next());
+        }
+        scanner.close();
+
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal words: %d.", list.size());
             }
+        } else {
             System.out.printf("%nTotal words: %d.", list.size());
-            String[] array = new String[list.size()];
-            for (int k = 0; k < list.size(); k++) {
-                array[k] = list.get(k);
+        }
+        String[] array = new String[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            array[k] = list.get(k);
 
+        }
+        Arrays.sort(array);
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.println("Sorted data: ");
             }
-            Arrays.sort(array);
-
-        System.out.println("Sorted data: ");
+        } else {
+            System.out.println("Sorted data: ");
+        }
         for (String element : array
-             ) {
-            System.out.print(element + " ");
+        ) {
+            if (!nameOfFile.equals("")) {
+                File file = new File(nameOfFile);
+                try (PrintWriter printWriter = new PrintWriter(file)) {
+                    printWriter.print(element + " ");
+                }
+            } else {
+                System.out.print(element + " ");
+            }
         }
 
     }
-        public static void SorterLine (Scanner scanner) {
-            List<String> list = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-                list.add(scanner.nextLine());
-            }
-            System.out.printf("%nTotal lines: %d.", list.size());
-            String[] array = new String[list.size()];
-            for (int k = 0; k < list.size(); k++) {
-                array[k] = list.get(k);
+    public static void SorterLine (Scanner scanner, String nameOfFile) throws FileNotFoundException {
+        List<String> list = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            list.add(scanner.nextLine());
+        }
+        scanner.close();
 
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal lines: %d.", list.size());
             }
-            Arrays.sort(array);
+        } else {
+            System.out.printf("%nTotal lines: %d.", list.size());
+        }
+        String[] array = new String[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            array[k] = list.get(k);
+
+        }
+        Arrays.sort(array);
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.println("Sorted data: ");
+            }
+        } else {
             System.out.println("Sorted data: ");
-            for (String element : array
-            ) {
+        }
+        for (String element : array
+        ) {
+            if (!nameOfFile.equals("")) {
+                File file = new File(nameOfFile);
+                try (PrintWriter printWriter = new PrintWriter(file)) {
+                    printWriter.println(element);
+                }
+            } else {
                 System.out.println(element);
             }
         }
-    public static void SorterIntegerByCount (Scanner scanner) {
+    }
+    public static void SorterIntegerByCount (Scanner scanner, String nameOfFile) throws FileNotFoundException {
         List<Integer> list = new ArrayList<>();
         while (scanner.hasNext()) {
             String variable = scanner.next();
@@ -88,7 +161,16 @@ public class Main {
                 System.out.printf("%s is not a valid parameter. It will be skipped.%n", variable);
             }
         }
-        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        scanner.close();
+
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal numbers: %d.", list.size());
+            }
+        } else {
+            System.out.printf("%nTotal numbers: %d.", list.size());
+        }
         int[] array = new int[list.size()];
         for (int k = 0; k < list.size(); k++) {
             array[k] = list.get(k);
@@ -117,9 +199,16 @@ public class Main {
                     double percentage = entry.getValue() * 100.0 / list.size();
                     percentage = Math.round(percentage);
                     int per = (int) percentage;
-                    String form = String.format("%d: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                    String form = String.format("%n%d: %d time(s), %d", entry.getKey(), entry.getValue(),
                             per);
-                    System.out.println(form);
+                    if (!nameOfFile.equals("")) {
+                        File file = new File(nameOfFile);
+                        try (PrintWriter printWriter = new PrintWriter(file)) {
+                            printWriter.printf(form);
+                        }
+                    } else {
+                        System.out.printf(form);
+                    }
                 }
                 if (counter == map.size()) {
                     counter = 0;
@@ -130,12 +219,21 @@ public class Main {
         }
 
     }
-    public static void SorterWordByCount (Scanner scanner) {
+    public static void SorterWordByCount (Scanner scanner, String nameOfFile) throws FileNotFoundException {
         List<String> list = new ArrayList<>();
         while (scanner.hasNext()) {
             list.add(scanner.next());
         }
-        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        scanner.close();
+
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal words: %d.", list.size());
+            }
+        } else {
+            System.out.printf("%nTotal words: %d.", list.size());
+        }
         String[] array = new String[list.size()];
         for (int k = 0; k < list.size(); k++) {
             array[k] = list.get(k);
@@ -164,10 +262,16 @@ public class Main {
                     double percentage = entry.getValue() * 100.0 / list.size();
                     percentage = Math.round(percentage);
                     int per = (int) percentage;
-                    String form = String.format("%s: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                    String form = String.format("%n%s: %d time(s), %d", entry.getKey(), entry.getValue(),
                             per);
-                    System.out.println(form);
-                }
+                    if (!nameOfFile.equals("")) {
+                        File file = new File(nameOfFile);
+                        try (PrintWriter printWriter = new PrintWriter(file)) {
+                            printWriter.printf(form);
+                        }
+                    } else {
+                        System.out.printf(form);
+                    }                }
                 if (counter == map.size()) {
                     counter = 0;
                     j ++;
@@ -177,12 +281,20 @@ public class Main {
         }
 
     }
-    public static void SorterLineByCount (Scanner scanner) {
+    public static void SorterLineByCount (Scanner scanner, String nameOfFile) throws FileNotFoundException {
         List<String> list = new ArrayList<>();
         while (scanner.hasNextLine()) {
             list.add(scanner.nextLine());
         }
-        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);        scanner.close();
+
+            try (PrintWriter printWriter = new PrintWriter(file)) {
+                printWriter.printf("%nTotal lines: %d.", list.size());
+            }
+        } else {
+            System.out.printf("%nTotal lines: %d.", list.size());
+        }
         String[] array = new String[list.size()];
         for (int k = 0; k < list.size(); k++) {
             array[k] = list.get(k);
@@ -211,9 +323,16 @@ public class Main {
                     double percentage = entry.getValue() * 100.0 / list.size();
                     percentage = Math.round(percentage);
                     int per = (int) percentage;
-                    String form = String.format("%s: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                    String form = String.format("%n%s: %d time(s), %d", entry.getKey(), entry.getValue(),
                             per);
-                    System.out.println(form);
+                    if (!nameOfFile.equals("")) {
+                        File file = new File(nameOfFile);
+                        try (PrintWriter printWriter = new PrintWriter(file)) {
+                            printWriter.printf(form);
+                        }
+                    } else {
+                        System.out.printf(form);
+                    }
                 }
                 if (counter == map.size()) {
                     counter = 0;
@@ -245,7 +364,7 @@ public class Main {
                 counter ++;
             }
         }
-            System.out.printf("%nThe greatest number: %d (%d time(s), %d%%).", max, counter, counter*100/ list.size());
+        System.out.printf("%nThe greatest number: %d (%d time(s), %d%%).", max, counter, counter*100/ list.size());
     }
     public static void lineWriter (Scanner scanner) {
         List<String> list = new ArrayList<>();
@@ -289,48 +408,63 @@ public class Main {
                 counter ++;
             }
         }
-            System.out.printf("%nThe greatest word: %s (%d time(s), %d%%).", max, counter, counter*100/ list.size());
+        System.out.printf("%nThe greatest word: %s (%d time(s), %d%%).", max, counter, counter*100/ list.size());
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
-        SorterInteger(scanner);
+        String nameOfFile ="";
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-inputFile")) {
+                nameOfFile = args[i + 1];
+            }
+        }
+        if (!nameOfFile.equals("")) {
+            File file = new File(nameOfFile);
+            scanner = new Scanner(file);
+        }
+        String nameOfFileToSaveIn = "";
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-outputFile")) {
+                nameOfFileToSaveIn= args[i + 1];
+            }
+        }
         if (args.length > 1) {
             if (args[0].equals("-sortingType")) {
                 if (args[1].equals("natural")) {
                     switch (args[3]) {
-                        case "line" -> SorterLine(scanner);
-                        case "long" -> SorterInteger(scanner);
-                        default -> SorterWord(scanner);
+                        case "line" -> SorterLine(scanner, nameOfFileToSaveIn);
+                        case "long" -> SorterInteger(scanner, nameOfFileToSaveIn);
+                        default -> SorterWord(scanner, nameOfFileToSaveIn);
 
                     }
 
                 } else if (args[1].equals("byCount")) {
                     switch (args[3]) {
-                        case "line" -> SorterLineByCount(scanner);
-                        case "long" -> SorterIntegerByCount(scanner);
-                        default -> SorterWordByCount(scanner);
+                        case "line" -> SorterLineByCount(scanner, nameOfFileToSaveIn);
+                        case "long" -> SorterIntegerByCount(scanner, nameOfFileToSaveIn);
+                        default -> SorterWordByCount(scanner, nameOfFileToSaveIn);
                     }
                 }
             } else if (args[0].equals("-dataType")) {
                 if (args.length > 3) {
                     if (args[3].equals("natural")) {
                         switch (args[1]) {
-                            case "line" -> SorterLine(scanner);
-                            case "long" -> SorterInteger(scanner);
-                            default -> SorterWord(scanner);
+                            case "line" -> SorterLine(scanner, nameOfFileToSaveIn);
+                            case "long" -> SorterInteger(scanner, nameOfFileToSaveIn);
+                            default -> SorterWord(scanner, nameOfFileToSaveIn);
                         }
                     } else if (args[3].equals("byCount")) {
                         switch (args[1]) {
-                            case "line" -> SorterLineByCount(scanner);
-                            case "long" -> SorterIntegerByCount(scanner);
-                            default -> SorterWordByCount(scanner);
+                            case "line" -> SorterLineByCount(scanner, nameOfFileToSaveIn);
+                            case "long" -> SorterIntegerByCount(scanner, nameOfFileToSaveIn);
+                            default -> SorterWordByCount(scanner, nameOfFileToSaveIn);
                         }
                     }
                 } else {
                     switch (args[1]) {
-                        case "line" -> SorterLine(scanner);
-                        case "long" -> SorterInteger(scanner);
-                        default -> SorterWord(scanner);
+                        case "line" -> SorterLine(scanner, nameOfFileToSaveIn);
+                        case "long" -> SorterInteger(scanner, nameOfFileToSaveIn);
+                        default -> SorterWord(scanner, nameOfFileToSaveIn);
                     }
                 }
             }
