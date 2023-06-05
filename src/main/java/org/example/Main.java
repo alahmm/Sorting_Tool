@@ -7,7 +7,12 @@ public class Main {
     public static void SorterInteger (Scanner scanner) {
         List<Integer> list = new ArrayList<>();
         while (scanner.hasNext()) {
-            list.add(scanner.nextInt());
+            String variable = scanner.next();
+            try {
+                list.add(Integer.parseInt(variable));
+            } catch (NumberFormatException e){
+                System.out.printf("%s is not a valid parameter. It will be skipped.%n", variable);
+            }
         }
         System.out.printf("%nTotal numbers: %d.", list.size());
         int i = 1;
@@ -76,7 +81,12 @@ public class Main {
     public static void SorterIntegerByCount (Scanner scanner) {
         List<Integer> list = new ArrayList<>();
         while (scanner.hasNext()) {
-            list.add(scanner.nextInt());
+            String variable = scanner.next();
+            try {
+                list.add(Integer.parseInt(variable));
+            } catch (NumberFormatException e){
+                System.out.printf("%s is not a valid parameter. It will be skipped.%n", variable);
+            }
         }
         System.out.printf("%nTotal numbers: %d.%n", list.size());
         int[] array = new int[list.size()];
@@ -283,65 +293,53 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-/*        Sorter(scanner);
-
-        if (args[0].equals("-dataType")) {
-            if (args.length > 2) {
-                Sorter(scanner);
-            } else {
-                switch (args[1]) {
-                    case "line" -> lineWriter(scanner);
-                    case "long" -> integerWriter(scanner);
-                    default -> wordWriter(scanner);
-                }
-            }
-        } else if (args[0].equals("-sortIntegers")) {
-            Sorter(scanner);
-        }*/
-       if (args[0].equals("-sortingType")) {
-            if (args[1].equals("natural")) {
-                switch (args[3]) {
-                    case "line" -> SorterLine(scanner);
-                    case "long" -> SorterInteger(scanner);
-                    default -> SorterWord(scanner);
-
-                }
-
-            } else if (args[1].equals("byCount")) {
-                switch (args[3]) {
-                    case "line" -> SorterLineByCount(scanner);
-                    case "long" -> SorterIntegerByCount(scanner);
-                    default -> SorterWordByCount(scanner);
-
-                }
-            }
-        } else if (args[0].equals("-dataType")) {
-            if (args.length > 2) {
-                if (args[3].equals("natural")) {
-                    switch (args[1]) {
+        SorterInteger(scanner);
+        if (args.length > 1) {
+            if (args[0].equals("-sortingType")) {
+                if (args[1].equals("natural")) {
+                    switch (args[3]) {
                         case "line" -> SorterLine(scanner);
                         case "long" -> SorterInteger(scanner);
                         default -> SorterWord(scanner);
 
                     }
 
-                } else if (args[3].equals("byCount")) {
-                    switch (args[1]) {
+                } else if (args[1].equals("byCount")) {
+                    switch (args[3]) {
                         case "line" -> SorterLineByCount(scanner);
                         case "long" -> SorterIntegerByCount(scanner);
                         default -> SorterWordByCount(scanner);
-
                     }
                 }
-            } else {
-                switch (args[1]) {
-                    case "line" -> SorterLine(scanner);
-                    case "long" -> SorterInteger(scanner);
-                    default -> SorterWord(scanner);
-
+            } else if (args[0].equals("-dataType")) {
+                if (args.length > 3) {
+                    if (args[3].equals("natural")) {
+                        switch (args[1]) {
+                            case "line" -> SorterLine(scanner);
+                            case "long" -> SorterInteger(scanner);
+                            default -> SorterWord(scanner);
+                        }
+                    } else if (args[3].equals("byCount")) {
+                        switch (args[1]) {
+                            case "line" -> SorterLineByCount(scanner);
+                            case "long" -> SorterIntegerByCount(scanner);
+                            default -> SorterWordByCount(scanner);
+                        }
+                    }
+                } else {
+                    switch (args[1]) {
+                        case "line" -> SorterLine(scanner);
+                        case "long" -> SorterInteger(scanner);
+                        default -> SorterWord(scanner);
+                    }
                 }
             }
+        } else {
+            if (args[0].equals("-sortingType")) {
+                System.out.println("No sorting type defined!");
+            } else if (args[0].equals("-dataType")) {
+                System.out.println("No data type defined");
+            }
         }
-
     }
 }
