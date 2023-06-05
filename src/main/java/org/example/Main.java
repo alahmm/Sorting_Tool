@@ -1,13 +1,10 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    public static void Sorter (Scanner scanner) {
+    public static void SorterInteger (Scanner scanner) {
         List<Integer> list = new ArrayList<>();
         while (scanner.hasNext()) {
             list.add(scanner.nextInt());
@@ -32,12 +29,188 @@ public class Main {
             array[j + 1] = x;
             i = i + 1;
         }
-
-
         System.out.println("Sorted data: ");
         for (int element : array
+        ) {
+            System.out.print(element + " ");
+        }
+    }
+        public static void SorterWord (Scanner scanner) {
+            List<String> list = new ArrayList<>();
+            while (scanner.hasNext()) {
+                list.add(scanner.next());
+            }
+            System.out.printf("%nTotal words: %d.", list.size());
+            String[] array = new String[list.size()];
+            for (int k = 0; k < list.size(); k++) {
+                array[k] = list.get(k);
+
+            }
+            Arrays.sort(array);
+
+        System.out.println("Sorted data: ");
+        for (String element : array
              ) {
             System.out.print(element + " ");
+        }
+
+    }
+        public static void SorterLine (Scanner scanner) {
+            List<String> list = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                list.add(scanner.nextLine());
+            }
+            System.out.printf("%nTotal lines: %d.", list.size());
+            String[] array = new String[list.size()];
+            for (int k = 0; k < list.size(); k++) {
+                array[k] = list.get(k);
+
+            }
+            Arrays.sort(array);
+            System.out.println("Sorted data: ");
+            for (String element : array
+            ) {
+                System.out.println(element);
+            }
+        }
+    public static void SorterIntegerByCount (Scanner scanner) {
+        List<Integer> list = new ArrayList<>();
+        while (scanner.hasNext()) {
+            list.add(scanner.nextInt());
+        }
+        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        int[] array = new int[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            array[k] = list.get(k);
+
+        }
+        Arrays.sort(array);
+
+        Map<Integer, Integer> map = new TreeMap<>();
+        int count;
+        for (int j : array) {
+            if (map.get(j) == null) {
+                map.put(j, 1);
+            } else {
+                count = map.get(j);
+                count++;
+                map.put(j, count);
+            }
+        }
+        int i = 0;
+        int j = 1;
+        int counter = 0;
+        while (i < map.size()) {
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                counter ++;
+                if (entry.getValue() == j) {
+                    double percentage = entry.getValue() * 100.0 / list.size();
+                    percentage = Math.round(percentage);
+                    int per = (int) percentage;
+                    String form = String.format("%d: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                            per);
+                    System.out.println(form);
+                }
+                if (counter == map.size()) {
+                    counter = 0;
+                    j ++;
+                    i++;
+                }
+            }
+        }
+
+    }
+    public static void SorterWordByCount (Scanner scanner) {
+        List<String> list = new ArrayList<>();
+        while (scanner.hasNext()) {
+            list.add(scanner.next());
+        }
+        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        String[] array = new String[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            array[k] = list.get(k);
+
+        }
+        Arrays.sort(array);
+
+        Map<String, Integer> map = new TreeMap<>();
+        int count;
+        for (String j : array) {
+            if (map.get(j) == null) {
+                map.put(j, 1);
+            } else {
+                count = map.get(j);
+                count++;
+                map.put(j, count);
+            }
+        }
+        int i = 0;
+        int j = 1;
+        int counter = 0;
+        while (i < map.size()) {
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                counter ++;
+                if (entry.getValue() == j) {
+                    double percentage = entry.getValue() * 100.0 / list.size();
+                    percentage = Math.round(percentage);
+                    int per = (int) percentage;
+                    String form = String.format("%s: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                            per);
+                    System.out.println(form);
+                }
+                if (counter == map.size()) {
+                    counter = 0;
+                    j ++;
+                    i++;
+                }
+            }
+        }
+
+    }
+    public static void SorterLineByCount (Scanner scanner) {
+        List<String> list = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            list.add(scanner.nextLine());
+        }
+        System.out.printf("%nTotal numbers: %d.%n", list.size());
+        String[] array = new String[list.size()];
+        for (int k = 0; k < list.size(); k++) {
+            array[k] = list.get(k);
+
+        }
+        Arrays.sort(array);
+
+        Map<String, Integer> map = new TreeMap<>();
+        int count;
+        for (String j : array) {
+            if (map.get(j) == null) {
+                map.put(j, 1);
+            } else {
+                count = map.get(j);
+                count++;
+                map.put(j, count);
+            }
+        }
+        int i = 0;
+        int j = 1;
+        int counter = 0;
+        while (i < map.size()) {
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                counter ++;
+                if (entry.getValue() == j) {
+                    double percentage = entry.getValue() * 100.0 / list.size();
+                    percentage = Math.round(percentage);
+                    int per = (int) percentage;
+                    String form = String.format("%s: %d time(s), %d%%", entry.getKey(), entry.getValue(),
+                            per);
+                    System.out.println(form);
+                }
+                if (counter == map.size()) {
+                    counter = 0;
+                    j ++;
+                    i++;
+                }
+            }
         }
 
     }
@@ -110,7 +283,7 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Sorter(scanner);
+/*        Sorter(scanner);
 
         if (args[0].equals("-dataType")) {
             if (args.length > 2) {
@@ -124,6 +297,50 @@ public class Main {
             }
         } else if (args[0].equals("-sortIntegers")) {
             Sorter(scanner);
+        }*/
+       if (args[0].equals("-sortingType")) {
+            if (args[1].equals("natural")) {
+                switch (args[3]) {
+                    case "line" -> SorterLine(scanner);
+                    case "long" -> SorterInteger(scanner);
+                    default -> SorterWord(scanner);
+
+                }
+
+            } else if (args[1].equals("byCount")) {
+                switch (args[3]) {
+                    case "line" -> SorterLineByCount(scanner);
+                    case "long" -> SorterIntegerByCount(scanner);
+                    default -> SorterWordByCount(scanner);
+
+                }
+            }
+        } else if (args[0].equals("-dataType")) {
+            if (args.length > 2) {
+                if (args[3].equals("natural")) {
+                    switch (args[1]) {
+                        case "line" -> SorterLine(scanner);
+                        case "long" -> SorterInteger(scanner);
+                        default -> SorterWord(scanner);
+
+                    }
+
+                } else if (args[3].equals("byCount")) {
+                    switch (args[1]) {
+                        case "line" -> SorterLineByCount(scanner);
+                        case "long" -> SorterIntegerByCount(scanner);
+                        default -> SorterWordByCount(scanner);
+
+                    }
+                }
+            } else {
+                switch (args[1]) {
+                    case "line" -> SorterLine(scanner);
+                    case "long" -> SorterInteger(scanner);
+                    default -> SorterWord(scanner);
+
+                }
+            }
         }
 
     }
